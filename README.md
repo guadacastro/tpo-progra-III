@@ -134,7 +134,7 @@ python dfs.py
 
  El método [run](dfs.py#L4), que implementa al algoritmo, tiene como entrada un vertice origen `u`.
   - Empezamos creando las siguientes variables que necesitamos para el desarrollo del algoritmo:
-    - `color`: Este diccionario va a guardar los vèrtices fueron visitados o no. Para ello vamos a representar los estados con colores. El color `blanco` quiere decir que ese nodo no fue visitado aun, el color `gris` significa que el nodo fue visitado por primera vez, y cuando todos los adyacentes de un vèrtice dado fueron descubiertos se cambia al color `negro`.
+    - `color`: Este diccionario va a guardar los vèrtices que fueron visitados o no. Para ello vamos a representar los estados con colores. El color `blanco` quiere decir que ese nodo no fue visitado aun, el color `gris` significa que el nodo fue visitado por primera vez, y cuando todos los adyacentes de un vèrtice dado fueron descubiertos se cambia al color `negro`.
     ```python
     color = {}  # blanco gris negro
     ```
@@ -146,7 +146,7 @@ python dfs.py
     ```python
     tiempo_recorrido = {}  # [principio, final]
     ```
-    - `output`: Es una lista que va a guardar el resultado de aplicar al algoritmo DFS. 
+    - `output`: Es una lista que va a guardar el resultado al aplicar el algoritmo DFS. 
     ```python
     output = []
     ```
@@ -178,23 +178,25 @@ python dfs.py
     ```python
     time += 1
     ```
-- El siguiente paso es ingresar a `u` en la lista `output`.
-- La lista llamada “output” es el recorrido que hace el algoritmo partiendo desde el origen `u`
+- El siguiente paso es ingresar a `u` en la lista `output`. La lista llamada “output” es el recorrido que hace el algoritmo partiendo desde el origen `u`
     ```python
     output.append(u)
     ```
-- Luego vamos a iterar todos los nodos del grafo:
+- Luego vamos pasando por todos los nodos adyacentes de `u` :
+    ```python
+    for x in g.adyacentes(u):
+    ```
   - Primero vamos a verificar si el nodo fue visitado. Para ello podemos verificar sabiendo si ese nodo tiene  color `blanco`, `gris` o `negro`.
 
     ```python
     if color[x] == "blanco":
 
     ```
-- Si el color del nodo es blanco, es decir, si el nodo todavia no fue visitado, entontes cambiaremos el padre del nodo por el nodo `u`. 
+  - Si el color del nodo es blanco, es decir, si el nodo todavia no fue visitado, entontes cambiaremos el padre del nodo por el nodo `u`. 
     ```python
     padre[x] = u
     ```
-- Luego, como es un algoritmo recursivo, vamos a llamar recursivamente a la funcion pero con el parametro `x` siendo el nodo que se esta evaluando en ese instante. Esto explorara todos los nodos a los que se puede llegar por medio de `u`. 
+  - Luego, como es un algoritmo recursivo, vamos a llamar recursivamente a la funcion pero con el parametro `x` siendo el nodo origen que se esta evaluando en ese instante. Esto explorara todos los nodos a los que se puede llegar por medio de `u`. 
     ```python
     run(x)
     ```
@@ -277,7 +279,7 @@ python bfs.py
 
 #### Implementación
 
- El método [run](bfs.py#L4), que implementa al algoritmo, tiene como entrada un vertice origen `u`. Para este algoritmo necesitaremos las clases `Queue` y  `Grafo`.
+ El método [run](bfs.py#L4), que implementa al algoritmo, tiene como entrada un vertice origen `u`.
 - Empezamos creando e inicializando los siguientes diccionarios y mas:
   - `visitados`: Es un diccionario que va contener todos los nodos que se hayan vistado anteriormente.
     ```python
@@ -291,7 +293,7 @@ python bfs.py
     ```python
     padre = {}
     ```
-  - `recorrido_output`: Es una lista que mostrara el recorrido que se hace por el algoritmo BFS
+  - `recorrido_output`: Es una lista que mostrara el recorrido que se hace gracias al algoritmo BFS
     ```python
     recorrido_output = []
     ```
@@ -307,10 +309,8 @@ python bfs.py
         padre[nodo] = None
         nivel[nodo] = -1 # o podria ser infinito
     ```
-- Lo que queda por hacer, antes de desarrollar el algoritmo, es elegir nuestro nodo origen `s`. Ahora debemos modificar el diccionario `visitados` y cambiar que el nodo `s` ya fue visitado, despues pondremos que el nivel en el que se encuentra `s` equivale a `0` y por ultimo, pondremos a `s` adentro de la `cola`.
-- Para desarrollar el mismo fue necesario utilizar una cola y la clase grafo
-- Es un algoritmo iterativo que va buscando nivel por nivel de grafo/árbol.
-- El ciclo while itera mientras la cola no esté vacía. Dentro del while hay un for que pasa por adyacentes del origen (u), si los adyacentes no fueron visitados, se los visita y se lo agrega a la cola.
+- Lo que queda por hacer, antes de desarrollar el algoritmo, es elegir nuestro nodo origen `s`. Ahora debemos modificar el diccionario `visitados` y cambiar que el nodo `s` ya fue visitado, despues pondremos que el nivel en el que se encuentra `s` equivale a `0` (ya que es el primero, la raiz) y por ultimo, pondremos a `s` adentro de la `cola`.
+
     ```python 
     s = "A" # elegimos un nodo base/origen 
     visitados[s] = True
@@ -318,7 +318,7 @@ python bfs.py
     cola.put(s)
     ```
 - Ahora llamamos a [run(s)](bfs.py#L4) y empezamos el algoritmo BFS.
-- Ahora empezamos con ciclo `while` que va a iterar hasta que la `cola` no este vacia. Ahora lo siguiente es poder obtener a `u` de la cola. Luego pondremos a `u` en la lista `recorrido_output` que nos mostrara el recorrido que hara el algoritmo.
+- Empezamos con ciclo `while` que va a iterar hasta que la `cola` no este vacia. Ahora lo siguiente es poder obtener a `u` de la cola. Luego pondremos a `u` en la lista `recorrido_output` que nos mostrara el recorrido que hara el algoritmo.
     ```python
     def run (s):
         while not cola.empty():
