@@ -2,7 +2,7 @@ from estructuras import Grafo, DiccionarioPrioridad
 import math
 import json
 
-
+############################# metodos
 def run(g, vertice_origen):
     solucion = {}
     vertices_no_visitados = DiccionarioPrioridad()
@@ -29,7 +29,7 @@ def run(g, vertice_origen):
     
     return solucion
 
-
+##########################programa principal
 
 g = Grafo(direccional=False)
 
