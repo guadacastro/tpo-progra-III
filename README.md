@@ -377,8 +377,8 @@ g.agregar_arista("F", "H", 0)
 
 ``` python
 [+] El recorrido que hace el algoritmo es: ['A', 'B', 'D', 'C', 'E', 'F', 'G', 'H']
-[+] La distancia mas corta desde el nodo base es de: 3
-[+] El camino mas corto desde cualquier nodo hasta el nodo base es: ['A', 'D', 'E', 'G']
+[+] La distancia mas corta desde el nodo base es de: 3 #ejemplo desde el nodo "g"
+[+] El camino mas corto desde cualquier nodo hasta el nodo base es: ['A', 'D', 'E', 'G'] # ejemplo desde el nodo "G"
 ```
 
 
